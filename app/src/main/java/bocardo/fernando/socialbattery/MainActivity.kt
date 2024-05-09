@@ -1,6 +1,8 @@
 package bocardo.fernando.socialbattery
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -19,5 +21,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val btnRegisterEmotion = findViewById<Button>(R.id.btnRegistrarEmocion)
+
+        btnRegisterEmotion.setOnClickListener {
+            val intent = Intent(this, RegisterEmotionActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
