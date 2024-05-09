@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val btnRegisterEmotion = findViewById<Button>(R.id.btnRegistrarEmocion)
 
         btnRegisterEmotion.setOnClickListener {
-            val intent = Intent(this, RegisterEmotionActivity::class.java)
+            val intent = Intent(this, SelectEmotion::class.java)
             startActivity(intent)
         }
     }
