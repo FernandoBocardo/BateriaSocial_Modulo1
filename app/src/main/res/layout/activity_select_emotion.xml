@@ -54,7 +54,7 @@
                     android:layout_height="150dp"
                     android:layout_margin="8dp"
                     android:background="@drawable/ic_age"
-                    android:drawableTop="@drawable/alegria"
+                    android:drawableTop="@drawable/alegriaa"
                     android:text="Alegria"
                     android:textAllCaps="false"
                     android:paddingTop="15dp"
