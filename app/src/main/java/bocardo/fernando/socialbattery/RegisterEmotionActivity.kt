@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,34 +24,39 @@ class RegisterEmotionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_emotion)
         val btnNext = findViewById<Button>(R.id.btnNext)
-        var tvAge = findViewById<TextView>(R.id.tvAge)
+        //var tvAge = findViewById<TextView>(R.id.tvAge)
         var etName = findViewById<TextView>(R.id.etName)
-        var btnPlus = findViewById<Button>(R.id.btnPlus)
-        var btnMinus = findViewById<Button>(R.id.btnMinus)
+        //var btnPlus = findViewById<Button>(R.id.btnPlus)
+        //var btnMinus = findViewById<Button>(R.id.btnMinus)
         var imagenEmocion = findViewById<ImageView>(R.id.imgAvatar)
-
+        var emocion = findViewById<TextView>(R.id.emocion)
+        val seekBarIntensidad = findViewById<SeekBar>(R.id.intensidad)
         val emocionSeleccionada = intent.getStringExtra("emocionSeleccionada")
-
+        var porcentaje = findViewById<TextView>(R.id.porcentaje)
+        val nombre = intent.getStringExtra("nombre")
+        emocion.setText(nombre)
         val imagenId = when (emocionSeleccionada) {
-            "Alegria" -> R.drawable.alegriaa
+            "Alegria" -> {
+                R.drawable.alegria
+            }
             "Tristeza" -> R.drawable.tristeza
-            "Confianza" -> R.drawable.confianza
-            "Desagrado" -> R.drawable.desa
+            "Confianza" -> R.drawable.angel
+            "Desagrado" -> R.drawable.desagrado1
             "Miedo" -> R.drawable.miedo
-            "Ira" -> R.drawable.ira
-            "Sorpresa" -> R.drawable.sorpresa
+            "Ira" -> R.drawable.ira2
+            "Sorpresa" -> R.drawable.sorpresa2
             "Anticipación" -> R.drawable.anticipacion
             else -> R.drawable.img_error
         }
 
         imagenEmocion.setImageResource(imagenId)
-        var mAge = 5
+        var mIntensidad = 5
         //var indiceImg = 0
         //val imageResources = intArrayOf(bocardo.fernando.socialbattery.R.drawable.img_feliz, bocardo.fernando.socialbattery.R.drawable.img_enojado, bocardo.fernando.socialbattery.R.drawable.img_triste)
 
 
 
-        tvAge.text = mAge.toString()
+        //tvAge.text = mIntensidad.toString()
         //btnNext.setOnClickListener {
             //val intent = Intent(this, FavoriteThemesActivity::class.java)
             //startActivity(intent)
@@ -63,19 +69,19 @@ class RegisterEmotionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnPlus.setOnClickListener {
-            if (mAge < 10) {
-                mAge++
-                tvAge.text = mAge.toString()
+        /*btnPlus.setOnClickListener {
+            if (mIntensidad < 10) {
+                mIntensidad++
+                tvAge.text = mIntensidad.toString()
             }
-        }
+        }*/
 
-        btnMinus.setOnClickListener {
-            if (mAge > 1) {
-                mAge--
-                tvAge.text = mAge.toString()
+        /*btnMinus.setOnClickListener {
+            if (mIntensidad > 1) {
+                mIntensidad--
+                tvAge.text = mIntensidad.toString()
             }
-        }
+        }*/
 
         btnNext.setOnClickListener {
             var mName = etName.text.toString()
@@ -85,11 +91,11 @@ class RegisterEmotionActivity : AppCompatActivity() {
                 etName.requestFocus()
             }
             else {
-                val mAge = tvAge.text.toString()
+                //val mAge = tvAge.text.toString()
 
                 val sharedPreferences = getSharedPreferences("infoUsuario", Context.MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
-                editor.putString("age", mAge)
+                //editor.putString("age", mAge)
                 editor.putString("name", mName)
                 editor.apply()
 
@@ -104,5 +110,137 @@ class RegisterEmotionActivity : AppCompatActivity() {
                 //startActivity(intent)
             }
         }
+
+        seekBarIntensidad.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(SeekBar: SeekBar?, progress: Int, p2: Boolean) {
+                val percentage = (progress * 100) / SeekBar!!.max
+                // Actualizar el TextView
+                porcentaje.text = "Intensidad: $progress%"
+                val imagenId = when (emocionSeleccionada) {
+                    "Alegria" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.serenidad)
+                            emocion.setText("Serenidad")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.alegria)
+                            emocion.setText("Alegria")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.alegriaa)
+                            emocion.setText("Extasis")
+                        } else {
+
+                        }
+                    }
+                    "Tristeza" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.melancolia)
+                            emocion.setText("Melancolía")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.tristeza)
+                            emocion.setText("Tristeza")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.pena)
+                            emocion.setText("Pena")
+                        } else {
+
+                        }
+                    }
+                    "Confianza" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.confianza)
+                            emocion.setText("Aprobación")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.angel)
+                            emocion.setText("Confianza")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.admiracion)
+                            emocion.setText("Admiración")
+                        } else {
+
+                        }
+                    }
+                    "Desagrado" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.tedio)
+                            emocion.setText("Tedio")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.desagrado1)
+                            emocion.setText("Desagrado")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.odio)
+                            emocion.setText("Odio")
+                        } else {
+
+                        }
+                    }
+                    "Miedo" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.temor)
+                            emocion.setText("Temor")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.miedo)
+                            emocion.setText("Miedo")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.terror)
+                            emocion.setText("Terror")
+                        } else {
+
+                        }
+                    }
+                    "Ira" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.enfado)
+                            emocion.setText("Enfado")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.ira2)
+                            emocion.setText("Ira")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.ira)
+                            emocion.setText("Furia")
+                        } else {
+
+                        }
+                    }
+                    "Sorpresa" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.distraido)
+                            emocion.setText("Distracción")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.sorpresa2)
+                            emocion.setText("Sorpresa")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.sorpresa)
+                            emocion.setText("Asombro")
+                        } else {
+
+                        }
+                    }
+                    "Anticipación" -> {
+                        if (progress < 33) {
+                            imagenEmocion.setImageResource(R.drawable.interes)
+                            emocion.setText("Interés")
+                        } else if (progress in 33..66) {
+                            imagenEmocion.setImageResource(R.drawable.anticipacion)
+                            emocion.setText("Anticipación")
+                        } else if (progress > 66) {
+                            imagenEmocion.setImageResource(R.drawable.vigilancia)
+                            emocion.setText("Vigilancia")
+                        } else {
+
+                        }
+                    }
+                    else -> R.drawable.img_error
+                }
+            }
+
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+            })
     }
 }

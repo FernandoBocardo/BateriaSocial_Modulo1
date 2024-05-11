@@ -46,7 +46,7 @@ class SelectEmotion : AppCompatActivity() {
         val btnSorpresa = findViewById<Button>(R.id.btnSorpresa)
         val btnAnticipacion = findViewById<Button>(R.id.btnAnticipacion)
         val btnNext = findViewById<Button>(R.id.btnNext)
-
+        var nombre: String
         var btnAlegriaSeleccionado = false
         var btnTristezaSeleccionado = false
         var btnConfianzaSeleccionado = false
@@ -55,7 +55,7 @@ class SelectEmotion : AppCompatActivity() {
         var btnIraSeleccionado = false
         var btnSorpresaSeleccionado = false
         var btnAnticipacionSeleccionado = false
-
+        nombre=""
         fun eliminarSeleccion() {
             btnAlegriaSeleccionado = false
             btnTristezaSeleccionado = false
@@ -108,7 +108,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnAlegria.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Alegria"
                 btnAlegria.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnAlegriaSeleccionado = true
             }
@@ -125,7 +125,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnTristeza.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Tristeza"
                 btnTristeza.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnTristezaSeleccionado = true
             }
@@ -142,7 +142,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnConfianza.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Confianza"
                 btnConfianza.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnConfianzaSeleccionado = true
             }
@@ -159,7 +159,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnDesagrado.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Desagrado"
                 btnDesagrado.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnDesagradoSeleccionado = true
             }
@@ -176,7 +176,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnMiedo.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Miedo"
                 btnMiedo.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnMiedoSeleccionado = true
             }
@@ -193,7 +193,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnIra.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Ira"
                 btnIra.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnIraSeleccionado = true
             }
@@ -210,7 +210,7 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnSorpresa.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Sorpresa"
                 btnSorpresa.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnSorpresaSeleccionado = true
             }
@@ -227,14 +227,15 @@ class SelectEmotion : AppCompatActivity() {
                     eliminarSeleccion()
                 }
                 btnAnticipacion.setBackgroundResource(R.drawable.gradient_gold_button)
-
+                nombre="Anticipacion"
                 btnAnticipacion.setTextColor(Color.parseColor("#715F20")) //Color texto
                 btnAnticipacionSeleccionado = true
             }
         }
         btnNext.setOnClickListener {
-            val intent = Intent(this, RegisterEmotionActivity::class.java)
+            val intent = Intent(this, RegisterEmotionActivity::class.java,)
             intent.putExtra("emocionSeleccionada", obtenerEmocionSeleccionada())
+            intent.putExtra("nombre", nombre)
             startActivity(intent)
         }
 
