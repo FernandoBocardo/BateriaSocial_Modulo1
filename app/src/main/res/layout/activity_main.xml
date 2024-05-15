@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="match_parent"
-        android:layout_height="117dp"
+        android:layout_height="177dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
         android:elevation="15dp"
@@ -39,8 +39,19 @@
         android:textStyle="bold"
         android:textAllCaps="false"
         android:layout_marginTop="16dp"
-        android:background="@drawable/btn_register"
+        android:background="@drawable/btn_login"
         android:layout_marginBottom="32dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCerrar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/btn_register"
+        android:text="Cerrar sesión"
+        android:textStyle="bold"
+        android:textSize="@dimen/buttons"
+        android:textAllCaps="false"
+        android:textColor="@color/text"/>
 
 
 

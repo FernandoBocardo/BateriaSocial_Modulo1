@@ -65,7 +65,7 @@ class RegisterEmotionActivity : AppCompatActivity() {
         val btnBack = findViewById<Button>(R.id.btnBack)
 
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, SelectEmotion::class.java)
             startActivity(intent)
         }
 

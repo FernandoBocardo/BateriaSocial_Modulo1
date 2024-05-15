@@ -108,7 +108,10 @@ class RegisterActivity : AppCompatActivity() {
                         uid?.let { usersRef.child(it).setValue(userData) }
 
                         Log.d(ContentValues.TAG, "createUserWithEmail:success")
-
+                        Toast.makeText(
+                            baseContext, "Usuario registrado",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         val sharedPreferences = getSharedPreferences("infoUsuario", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.clear()

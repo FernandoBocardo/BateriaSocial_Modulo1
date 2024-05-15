@@ -23,10 +23,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btnRegisterEmotion = findViewById<Button>(R.id.btnRegistrarEmocion)
+        val btnCerrarSesion = findViewById<Button>(R.id.btnCerrar)
 
         btnRegisterEmotion.setOnClickListener {
             val intent = Intent(this, SelectEmotion::class.java)
             startActivity(intent)
         }
+
+        btnCerrarSesion.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

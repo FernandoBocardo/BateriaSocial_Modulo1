@@ -23,6 +23,10 @@ class SelectEmotion : AppCompatActivity() {
         val btnBack = findViewById<Button>(R.id.btnBack)
         auth = Firebase.auth
 
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
 
         configurarBotones();
@@ -235,8 +239,18 @@ class SelectEmotion : AppCompatActivity() {
         btnNext.setOnClickListener {
             val intent = Intent(this, RegisterEmotionActivity::class.java,)
             intent.putExtra("emocionSeleccionada", obtenerEmocionSeleccionada())
-            intent.putExtra("nombre", nombre)
-            startActivity(intent)
+            val emocionSeleccionada = obtenerEmocionSeleccionada()
+            if (emocionSeleccionada?.isNotEmpty() == true) {
+                val intent = Intent(this, RegisterEmotionActivity::class.java)
+                intent.putExtra("emocionSeleccionada", emocionSeleccionada)
+                intent.putExtra("nombre", nombre)
+                startActivity(intent)
+            } else {
+                // Mostrar un mensaje de error o notificación al usuario
+                Toast.makeText(this, "Por favor, selecciona una emoción.", Toast.LENGTH_SHORT).show()
+            }
+            //intent.putExtra("nombre", nombre)
+            //startActivity(intent)
         }
 
     }
