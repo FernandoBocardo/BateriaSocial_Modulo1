@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.Date
 
 class RegisterEmotionActivity : AppCompatActivity() {
 
@@ -106,8 +107,18 @@ class RegisterEmotionActivity : AppCompatActivity() {
                 println(sharedPreferences.getString("imageName", ""))
                 println(sharedPreferences.getString("name", ""))
 
-                //val intent = Intent(this, FavoriteThemesActivity::class.java)
-                //startActivity(intent)
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                if (userId != null) {
+                    val emocion = Emocion(emocion.text.toString(), seekBarIntensidad.progress, etName.text.toString(), System.currentTimeMillis(), userId)
+                    val databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("emociones")
+                    databaseReference.push().setValue(emocion)
+                } else {
+                    // Manejar el caso donde no hay un usuario autenticado
+                    println("No user is currently signed in.")
+                }
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
         }
 
